@@ -45,12 +45,13 @@ const requestListener = function (req, res) {
           },
         });
         var fileContent = result.getBody();
-        var myUuid = uuid.v4();
+        var myUuid = uuid.v4().replace(/-/g,'');
         //fs.WriteFileSync(`src/${myUuid}.java`, fileContent);
         var filename = `src/${myUuid}.java`;
-        var writeStream = fs.createWriteStream(filename);
-        writeStream.write(fileContent);
-        writeStream.end();
+        fs.writeFileSync(filename,fileContent);
+        //var writeStream = fs.createWriteStream(filename);
+        //writeStream.write(fileContent);
+        //writeStream.end();
         var toto = "";
         var finalParams = [
           //require("path").join("src", `${myUuid}.java`),
