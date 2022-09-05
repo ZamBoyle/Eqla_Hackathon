@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Bare - Start Bootstrap Template</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Hackathon BlindCode</a>
+            <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div> -->
+        </div>
+    </nav>
+    <!-- Page content-->
+    <div class="container bg-light">
+        <div class="text-center mt-1">
+            <h1>Page de démo</h1>
+            <p class="lead">Permet d'exécuter du code simple java hébergé sur GitHub</p>
+        </div>
+        <form action="http://192.168.178.23:8080" method="get" target="my_iframe">
+            <input type="hidden" name="program" value="hello.java">
+            <input type="hidden" name="repo" value="ZamBoyle/GitHubJavaExos">
+            <div class="form-group">
+                <label for="function">Sélectionner une fonction</label>
+
+                <select name="function" id="function" class="form-control" required>
+                    <option value=""></option>
+                    <option value="hello">hello ()</option>
+                    <option value="add">add (int p1, int p2)</option>
+                    <option value="help">help ()</option>
+                    <option value="tablemultiplication">tableMultiplication (int table, int max)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="p1">Premier paramètre p1</label>
+                <input type="text" class="form-control" name="p1" id="p1">
+            </div>
+            <div class="form-group">
+                <label for="p2">Deuxième paramètre p2</label>
+                <input type="text" class="form-control" name="p2" id="p2">
+            </div><br/>
+            <input type="submit"  class="btn btn-primary" value="Envoyer">
+        </form>
+        <div class="border border-primary mt-2">
+            <iframe class="p-1 w-100  h-100" name="my_iframe" ></iframe>
+        </div>
+    </div>
+    <!-- Bootstrap core JS-->
+    <script src="js/bootstrap.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</body>
+
+</html>
