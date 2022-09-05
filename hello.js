@@ -2,7 +2,7 @@ var uuid = require("uuid");
 const fs = require("fs");
 const https = require("https");
 const http = require("http");
-const host = "192.168.178.23";
+const host = "192.168.178.111";
 const path = require("path");
 const port = 8080;
 const mandatoryFields = ["program", "repo", "function"];
@@ -54,7 +54,7 @@ const requestListener = function (req, res) {
         var toto = "";
         var finalParams = [
           //require("path").join("src", `${myUuid}.java`),
-          require("path").join("src", "yo.java"),
+          require("path").join("src", `${myUuid}.java`),
           params.get("function"),
         ];
         [...params.keys()].sort().forEach((element) => {
@@ -95,7 +95,25 @@ const requestListener = function (req, res) {
       body += "</ul>";
     }
     res.write(
-      `<html><body>${body}</body></html>`,
+      `
+      <!doctype html>
+      <html lang="FR">
+      <html>
+        <head>
+          <!-- Required meta tags -->
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+          <!-- Bootstrap CSS -->
+          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      
+          <title>Hello, world!</title>
+        </head>
+        <body>
+          ${body}
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        </body>
+      </html>`,
       "utf-8"
     );
 
@@ -106,8 +124,6 @@ const requestListener = function (req, res) {
     res.end();
   }
 };
-
-function getSearchParams(url) {}
 
 const server = http.createServer(requestListener);
 server.listen(port, host, () => {
