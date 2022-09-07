@@ -31,8 +31,8 @@ const requestListener = function (req, res) {
         var fileContent = getGithubFile(repo, program);
 
         writeGithubFile(fileContent, myUuid);
-        deleteGithubFile(myUuid);
         body = runJAVAProgram(javaParams);        
+        deleteGithubFile(myUuid);
       } catch (error) {
         body = getErrorMessage(error);
       }
