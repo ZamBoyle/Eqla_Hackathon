@@ -31,14 +31,14 @@ const requestListener = function (req, res) {
         var fileContent = getGithubFile(repo, program);
 
         writeGithubFile(fileContent, myUuid);
-
+        deleteGithubFile(myUuid);
         body = runJAVAProgram(javaParams);        
       } catch (error) {
         body = getErrorMessage(error);
       }
     } else {
       errorMessage = `Il manque un des parametres obligatoires suivants:<ul>`;
-      mandatoryFields.forEach((x) => (errorMessage += `<li> ${x} </li>`));
+      mandatoryFields.forEach((x) => !params.has(x) (errorMessage += `<li> ${x} </li>`));
       errorMessage += "</ul>";
       body = getErrorMessage(errorMessage);
     }
@@ -93,6 +93,11 @@ mandatoryFields.forEach(
   (x) => (url = url.replace(new RegExp(`${x}=`, "gi"), `${x}=`))
 );
   return url;
+}
+
+function deleteGithubFile(myUuid){
+  var filename = `src/${myUuid}.java`;
+  fs.unlinkSync(filename);
 }
 
 function getGithubFile(repo, program){
