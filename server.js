@@ -10,106 +10,124 @@ const mandatoryFields = ["program", "repo", "function"];
 const githubUrl = "https://raw.githubusercontent.com";
 
 const requestListener = function (req, res) {
-  console.log(
-    `Connexion depuis: ${req.connection.remoteAddress} sur l'url ${req.url} `
-  );
+
   if (req.method == "GET") {
-
     var url = cleanUrl(req);
-    params = new URLSearchParams(url);
-    var body = "";
+    if (!url.includes("favicon.ico")) {
+      console.log(
+        `Connexion depuis \x1b[33m ${req.connection.remoteAddress}\x1b[0m' sur l'url \x1b[36m${req.url}\x1b[0m `
+      );      
+      params = new URLSearchParams(url);
+      var body = "";
 
-    res.setHeader("Content-Type", "text/html; charset=utf-8'");
-    res.writeHead(200);
+      res.setHeader("Content-Type", "text/html; charset=utf-8'");
+      res.writeHead(200);
 
-    if (mandatoryFields.every((f) => params.has(f) && params.get(f))) {
-      try {
-        var repo = `${params.get("repo")}`;
-        var program = `${params.get("program")}`;
-        var myUuid = uuid.v4().replace(/-/g,'');
-        var javaParams = getJavaParams(params,myUuid);
-        var fileContent = getGithubFile(repo, program);
+      if (mandatoryFields.every((f) => params.has(f) && params.get(f))) {
+        try {
+          var repo = `${params.get("repo")}`;
+          var program = `${params.get("program")}`;
+          var myUuid = uuid.v4().replace(/-/g, "");
+          var javaParams = getJavaParams(params, myUuid);
+          var fileContent = getGithubFile(repo, program);
 
-        writeGithubFile(fileContent, myUuid);
-        body = runJAVAProgram(javaParams);        
-        deleteGithubFile(myUuid);
-      } catch (error) {
-        body = getErrorMessage(error);
+          writeGithubFile(fileContent, myUuid);
+          body = runJAVAProgram(javaParams);
+          deleteGithubFile(myUuid);
+        } catch (error) {
+          body = getErrorMessage(error);
+        }
+      } else {
+        if (params) {
+          errorMessage = `Il manque les parametres obligatoires suivants:<ul>`;
+          mandatoryFields.forEach((x) => {
+            if (!params.has(x) || !params.get(x)) {
+              errorMessage += `<li> ${x} </li>`;
+            }
+          });
+        } else {
+          errorMessage = `Il manque tous les paramètres obligatoires:<ul>`;
+          mandatoryFields.forEach((x) => (errorMessage += `<li> ${x} </li>`));
+        }
+        errorMessage += "</ul>";
+        body = getErrorMessage(errorMessage);
       }
-    } else {
-      if(params){
-        errorMessage = `Il manque les parametres obligatoires suivants:<ul>`;
-        mandatoryFields.forEach((x) =>  {
-          if(!params.has(x) || !params.get(x)) {
-            errorMessage += `<li> ${x} </li>`
-          }
-        });
-      }else{
-        errorMessage = `Il manque tous les paramètres obligatoires:<ul>`;
-        mandatoryFields.forEach((x) => errorMessage += `<li> ${x} </li>`);
-      }
-      errorMessage += "</ul>";
-      body = getErrorMessage(errorMessage);
+      var templateContent = fs.readFileSync("template.html").toString();
+      templateContent = templateContent.replace("##BODY##", body);
+      res.write(templateContent, "utf-8");
+
+      req.on("end", function () {
+        //var post = qs.parse(body);
+        // use post['blah'], etc.
+      });
+      res.end();
+      console.log("=========================================");
     }
-    var templateContent = fs.readFileSync('template.html').toString();
-    templateContent = templateContent.replace("##BODY##",body);
-    res.write(templateContent,'utf-8');
-
-    req.on("end", function () {
-      //var post = qs.parse(body);
-      // use post['blah'], etc.
-    });
-    res.end();
   }
 };
 
-function getJavaParams(params, myUuid){
-  var JavaParams = [require("path").join("src", `${myUuid}.java`),params.get("function")  ];
+function getJavaParams(params, myUuid) {
+  var JavaParams = [
+    require("path").join("src", `${myUuid}.java`),
+    params.get("function"),
+  ];
   [...params.keys()].sort().forEach((element) => {
-      if (element.length == 2 && element.startsWith("p") && element.length>0 && params.get(element).length >0) {
-        JavaParams.push(params.get(element));
+    if (
+      element.length == 2 &&
+      element.startsWith("p") &&
+      element.length > 0 &&
+      params.get(element).length > 0
+    ) {
+      JavaParams.push(params.get(element));
     }
   });
   return JavaParams;
 }
 
-function runJAVAProgram(params){
-  const childProcess = require("child_process").spawnSync(
-    "java",
-    params
+function runJAVAProgram(finalparams) {
+  const childProcess = require("child_process").spawnSync("java", finalparams);
+  var paramsStr = "";
+  finalparams.forEach((x) => (paramsStr += x + " "));
+  console.log(
+    `\tExécution du programme suivant: \x1b[92m java ${paramsStr}\x1b[0m (from \x1b[95mhttps://github.com/${params.get('repo')}/blob/master/${params.get('program')}\x1b[0m)`
   );
-  if(childProcess.stdout.length>0)
+  if (childProcess.stdout.length > 0) {
+    console.log("\tRésultat: \x1b[36mOK\x1b[0m");
     return childProcess.stdout.toString();
-  else
+  } else {
     throw childProcess.stderr.toString();
+  }
 }
 
-function getErrorMessage(error){
+function getErrorMessage(error) {
   var debugParams = "<ul>";
   [...params.keys()].forEach(
     (k) => (debugParams += `<li>${k} = "${params.get(k)}"</li>`)
   );
-  var errorTemplate = fs.readFileSync('errortemplate.html').toString();
-  errorTemplate = errorTemplate.replace("##ERROR##", error).replace("##PARAMS##", debugParams);
-  return errorTemplate; 
+  var errorTemplate = fs.readFileSync("errortemplate.html").toString();
+  errorTemplate = errorTemplate
+    .replace("##ERROR##", error)
+    .replace("##PARAMS##", debugParams);
+  console.log(`\tRésultat: \x1b[31mKO\x1b[0m: \x1b[91m${error}\x1b[0m`);
+  return errorTemplate;
 }
 
-function cleanUrl(req){
+function cleanUrl(req) {
   var url = req.url.startsWith("/?")
-  ? req.url.replace("/?", "")
-  : req.url.replace("/", "");
-mandatoryFields.forEach(
-  (x) => (url = url.replace(new RegExp(`${x}=`, "gi"), `${x}=`))
-);
+    ? req.url.replace("/?", "")
+    : req.url.replace("/", "");
+  mandatoryFields.forEach(
+    (x) => (url = url.replace(new RegExp(`${x}=`, "gi"), `${x}=`))
+  );
   return url;
 }
 
-function deleteGithubFile(myUuid){
+function deleteGithubFile(myUuid) {
   var filename = `src/${myUuid}.java`;
   fs.unlinkSync(filename);
 }
 
-function getGithubFile(repo, program){
+function getGithubFile(repo, program) {
   var request = require("sync-request");
   var result = request("GET", `${githubUrl}/${repo}/master/${program}`, {
     Headers: {
@@ -120,9 +138,9 @@ function getGithubFile(repo, program){
   return result.getBody();
 }
 
-function writeGithubFile(fileContent, myUuid){
+function writeGithubFile(fileContent, myUuid) {
   var filename = `src/${myUuid}.java`;
-  fs.writeFileSync(filename,fileContent);
+  fs.writeFileSync(filename, fileContent);
 }
 
 const server = http.createServer(requestListener);
