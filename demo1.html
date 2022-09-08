@@ -7,10 +7,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Hackathon BlindCode</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
 <body>
@@ -26,19 +23,19 @@
             <h1>Page de démo</h1>
             <p class="lead">Permet d'exécuter du code simple java hébergé sur GitHub</p>
         </div>
-        <form action="http://127.0.0.1:8080" method="get" target="my_iframe">
-            <input type="hidden" name="program" value="hello.java">
+        <form action="http://127.0.0.1:8080" method="get" >
+            <input type="hidden" name="program" value="Demo.java">
             <input type="hidden" name="repo" value="ZamBoyle/GitHubJavaExos">
             <div class="form-group">
                 <label for="function">Sélectionner une fonction</label>
 
-                <select name="function" id="function" class="form-control" required>
+                <select name="function" id="function" class="form-control">
                     <option value=""></option>
-                    <option value="salutation">salutation (p1)</option>
-                    <option value="hello">hello ()</option>
+                    <option value="helloworld">helloWorld ()</option>
+                    <option value="hi">hi (p1)</option>                    
                     <option value="add">add (int p1, int p2)</option>
-                    <option value="help">help ()</option>
                     <option value="tablemultiplication">tableMultiplication (int table, int max)</option>
+                    <option value="help">help ()</option>                    
                 </select>
             </div>
             <div class="form-group">
@@ -52,13 +49,10 @@
             <input type="submit"  class="btn btn-primary" value="Envoyer">
         </form>
         <div class="border border-primary mt-2 embed-responsive embed-responsive-16by9">
-            <iframe class="p-1 w-100  h-100" name="my_iframe" allowfullscreen ></iframe>
+            <iframe class="p-1 w-100  h-100" name="my_iframe" allowfullscreen scrolling="no" onload="resizeIframe(this)"></iframe>
         </div>
     </div>
-    <!-- Bootstrap core JS-->
-    <script src="js/bootstrap.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -1,0 +1,1 @@
+Ce répertoire ne sert que de répertoire temporaire pour le chargement du fichier JAVA à exécuter.
