@@ -37,8 +37,17 @@ const requestListener = function (req, res) {
         body = getErrorMessage(error);
       }
     } else {
-      errorMessage = `Il manque un des parametres obligatoires suivants:<ul>`;
-      mandatoryFields.forEach((x) => !params.has(x) (errorMessage += `<li> ${x} </li>`));
+      if(params){
+        errorMessage = `Il manque les parametres obligatoires suivants:<ul>`;
+        mandatoryFields.forEach((x) =>  {
+          if(!params.has(x) || !params.get(x)) {
+            errorMessage += `<li> ${x} </li>`
+          }
+        });
+      }else{
+        errorMessage = `Il manque tous les paramètres obligatoires:<ul>`;
+        mandatoryFields.forEach((x) => errorMessage += `<li> ${x} </li>`);
+      }
       errorMessage += "</ul>";
       body = getErrorMessage(errorMessage);
     }
