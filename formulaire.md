@@ -139,6 +139,8 @@ Pour pouvoir exécuter un code java, notre serveur va avoir besoin de champs obl
 - repo: il contiendra le nom de l'utilisateur et le nom du repo.
 - program: le nom du programme java à exécuter. Attention GitHub est sensible casse.
 - function: le nom de la fonction à utiliser.
+
+La fonction appelée pourrait avoir besoin de paramètres:
 - p1: première paramètre.
 - p2: second paramètre.
 - p3: etc...
