@@ -77,7 +77,7 @@ Je n'ai pas le temps de toutes les voir. Je ne vais m'attarder que sur la valeur
 1. text: Comme son nom l'indique, il permet d'entrer du texte au choix.
 2. hidden: il signie caché. Donc il ne sera pas visible pour l'utilisateur. L'intérêt c'est d'envoyer certaines données à la page de destination que l'utilisateur n'a pas nécessairement besoin de connaître mais que la page qui traîte notre formulaire a besoin de savoir.
 
-## 3. l'attribut required
+### 3. l'attribut required
 
 Cet attribut appliqué sur la balise Input indique que le champ est obligatoire. Si vous essayez d'envoyer un champ vide alors que l'attribut required est indiqué, vous ne saurez pas. En effet, le navigateur va pour signaler que le champ est requis.
 
@@ -102,20 +102,55 @@ Nous avons mdofié/ajouté:
 - Le champ name qui est obligatoire (required est indiqué).
 - Le champ hobby qui n'est pas obligatoire.
 
-## 4. L'attribut hidden
-Cet attribut que l'on peut utiliser sur n'importe quelle balise html permet de cacher le contenu de la balise. Ce qui signifie que visuellement vous ne voyez pas ce qu'il y a mais est présent dans le code HTML. Dans le cadre d'un formulaire cela peut être intéressant. Imaginons que le formulaire porte sur la modification d'un étudiant. Nous modifions un étudiant qui a un matricule. Peut-être que cette information n'est pas nécessaire à afficher car c'est une donnée en plus à afficher et parfois il est préférable de faire des interfaces simples/sobres sans trop de données. Dans ce cas, hidden est fort pratique.
+### 4. Le type hidden
+Cet attribut que l'on peut utiliser sur un champ permet de cacher le contenu de la balise. Ce qui signifie que visuellement vous ne voyez pas la valeur de ce champs mais il est présent dans le code HTML. Dans le cadre d'un formulaire cela peut être intéressant. Imaginons que le formulaire porte sur la modification d'un étudiant. Nous modifions un étudiant qui a un matricule. Peut-être que cette information n'est pas nécessaire à afficher car c'est une donnée en plus à afficher et parfois il est préférable de faire des interfaces simples/sobres sans trop de données. Dans ce cas, hidden est fort pratique.
 
 Modifions notre formulaire:
-
+```html
 <form action="http://uneadresse.com" method="get">
-    <input id="matricule" name="matricule" type="text" hidden >
+    <input id="matricule" name="matricule" type="hidden" value="7414">
     Votre prénom:
     <input id="fname" name="fname" type="text" required ><br/>
     Votre nom:
     <input id="name" name="name" type="text" required ><br/>
     Votre hobby:
     <input id="name" name="name" type="text"><br/>
-    <input type="submit" value="envoyer">
+    <input type="submit" value="Mettre à jour">
 </form>
 ```
 
+Le champ matricule sera invisible et aura la valeur 7414. Grâce à cette information le programme côté serveur sera au courant que l'on traîte de l'étudiant ayant le matricule 7414.
+
+
+### 5. Les attributs id et name
+On pourrait se poser la question: pourquoi avoir id et name comme attributs ?
+
+En fait c'est assez simple, votre formulaire enverra au serveur la valeur de l'attribut name. L'id ne sera utile que pour toute manipulation de la page html via par exemple le javascript où l'on pourra directement atteindre notre champ via son id.
+
+En résumé:
+- name sera utilisé par le serveur web appelé et récupèrera la valeur du champ.
+- id peut être utilisé au sein du document HTML.
+
+### 6. Le type submit
+Ce type de champ de formulaire indique que c'est un bouton qui doit être créé. L'attribut value indique le texte à afficher sur le bouton.
+
+## 3. Exemple d'appel du serveur
+Pour pouvoir exécuter un code java, notre serveur va avoir besoin de champs obligatoires:
+- repo: il contiendra le nom de l'utilisateur et le nom du repo.
+- program: le nom du programme java à exécuter. Attention GitHub est sensible casse.
+- function: le nom de la fonction à utiliser.
+- p1: première paramètre.
+- p2: second paramètre.
+- p3: etc...
+
+Faites une page html qui comprendra ce formulaire:
+```html
+<form action="http://zamboyle.synology.me:8080" method="get">
+    <input id="repo" name="repo" type="hidden" value="ZamBoyle/Eqla_Hackathon">
+    <input id="program" name="program" type="hidden" value="Demo.java">
+    fonction:<input id="function" name="function" type="text">
+    <input type="submit" value="Envoyer">
+</form>
+```
+
+Testez votre formulaire et entrez comme valeur pour fonction: help

@@ -3,7 +3,7 @@ var params;
 const fs = require("fs");
 const https = require("https");
 const http = require("http");
-const host = "127.0.0.1";
+const host = "192.168.178.23";
 const path = require("path");
 const port = 8080;
 const mandatoryFields = ["program", "repo", "function"];
