@@ -92,7 +92,7 @@ Modifions notre formulaire:
     Votre nom:
     <input id="name" name="name" type="text" required ><br/>
     Votre hobby:
-    <input id="name" name="name" type="text"><br/>
+    <input id="hobby" name="hobby" type="text"><br/>
     <input type="submit" value="envoyer">
 </form>
 ```
