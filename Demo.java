@@ -74,7 +74,7 @@ public class Demo {
                     // Sinon on affiche un message d'erreur.
                     // L'utilisation de .err à la place de .out permet au serveur web de savoir qu'il y a une erreur à afficher.
                     else {
-                        System.err.println("Vous devez fournir des deux paramètre: un pour la table de multiplication que vous souhaitez (ex: table de 3) et un autre paramètre pour savoir jusqu'où aller (ex 300). Ni plus, ni moins.");
+                        System.err.println("Vous devez fournir deux paramètres: un pour la table de multiplication p1 que vous souhaitez (ex: table de 3) et un autre paramètre p2 pour savoir jusqu'où aller (ex 300). Ni plus, ni moins.");
                     }
                     break;
                 
