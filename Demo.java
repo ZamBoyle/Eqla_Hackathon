@@ -119,13 +119,13 @@ public class Demo {
         System.out.println("<h2>Fonctions mathématiques</h2>");
         System.out.println("<ul>");
         System.out.println("<li>add (p1, p2) = affiche la somme de p1+p2</li>");
-        System.out.println("<li>minus (p1, p2) = affiche l'aide du programme</li>");
-        System.out.println("<li>tableMultiplication (p1, p2) = table de multiplication de p1 jusqu'a p2.</li>");
+        System.out.println("<li>tablemultiplication (p1, p2) = table de multiplication de p1 jusqu'a p2.</li>");
         System.out.println("</ul>");
         System.out.println("<h2>Fonctions diverses</h2>");
         System.out.println("<ul>");
         System.out.println("<li>help () = affiche l'aide.</li>");
         System.out.println("<li>helloWorld () = affiche hello World !");
+        System.out.println("<li>hi (p1) = Salue p1");
         System.out.println("</ul>");
     }
 }
