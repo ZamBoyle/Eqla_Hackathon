@@ -30,7 +30,7 @@ On constate que l'on ici deux attributs dans l'exemple précédent:
 - action: cet attribut indique quelle page contacter pour envoyer le formulaire lorsque l'utlisatateur appuiera sur le bouton.
 - method: ici il existe deux valeurs possibles GET et POST.
 
-Lorsque le navigateur doit envoyer le formulaire avec get comme valeur, vous devez imaginer qu'il va contacter la page se trouvant dans l'attribut action et qu'il va ajouter les différentes valeurs données aux différents champs.
+Lorsque le navigateur doit envoyer le formulaire avec get comme valeur pour l'attribut method, vous devez imaginer qu'il va contacter la page se trouvant dans l'attribut action et qu'il va ajouter les différentes variables et les valeurs données aux différents champs.
 
 Soit le formulaire suivant:
 ```html
@@ -46,6 +46,8 @@ Dans notre formulaire nous avons ajouté:
 - un texte: Votre prénom.
 - un champ de type text ayant pour id et name la valeur "fname".
 - un champ de type submit qui va nous permettre d'envoyer notre formulaire.
+
+Concernant la méthode get, le navigateur va donc contacter la page suivante http://uneadresse.com?fname=Johnny
 
 ### 2. Balise Input
 
@@ -101,6 +103,8 @@ Nous avons mdofié/ajouté:
 - Le champ fname qui est obligatoire (required est indiqué).
 - Le champ name qui est obligatoire (required est indiqué).
 - Le champ hobby qui n'est pas obligatoire.
+
+Concernant la méthode get, le navigateur va donc contacter la page suivante http://uneadresse.com?fname=Johnny&name=Piette&hobby=Computer
 
 ### 4. Le type hidden
 Cet attribut que l'on peut utiliser sur un champ permet de cacher le contenu de la balise. Ce qui signifie que visuellement vous ne voyez pas la valeur de ce champs mais il est présent dans le code HTML. Dans le cadre d'un formulaire cela peut être intéressant. Imaginons que le formulaire porte sur la modification d'un étudiant. Nous modifions un étudiant qui a un matricule. Peut-être que cette information n'est pas nécessaire à afficher car c'est une donnée en plus à afficher et parfois il est préférable de faire des interfaces simples/sobres sans trop de données. Dans ce cas, hidden est fort pratique.
