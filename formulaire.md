@@ -36,7 +36,7 @@ Soit le formulaire suivant:
 ```html
 <form action="http://uneadresse.com" method="get">
     Votre prénom:
-    <input id="fname" name="fname" type="text">
+    <input id="fname" name="fname" type="text"><br/>
 
     <input type="submit" value="envoyer">
 </form>
@@ -79,6 +79,43 @@ Je n'ai pas le temps de toutes les voir. Je ne vais m'attarder que sur la valeur
 
 ## 3. l'attribut required
 
-Cet attribut appliqué sur la balise Input indique le choix est obligatoire. Si vous essayez d'envoyer un champ vide alors que l'attribut required est indiqué, vous ne saurez pas. En effet, le navigateur va pour signaler que le choix est requis.
+Cet attribut appliqué sur la balise Input indique que le champ est obligatoire. Si vous essayez d'envoyer un champ vide alors que l'attribut required est indiqué, vous ne saurez pas. En effet, le navigateur va pour signaler que le champ est requis.
 
+Cet attribut est intéressant pour valider votre formulaire. Mais n'oubliez pas que ce test que vous faites côté client est à faire côté serveur. En effet, il y a une règle à retenir tout test fait côté front-end est à refaire côté serveur: ne jamais croire de but en blanc ce qu'une page web vous a envoyé.
+
+Modifions notre formulaire:
+
+```html
+<form action="http://uneadresse.com" method="get">
+    Votre prénom:
+    <input id="fname" name="fname" type="text" required ><br/>
+    Votre nom:
+    <input id="name" name="name" type="text" required ><br/>
+    Votre hobby:
+    <input id="name" name="name" type="text"><br/>
+    <input type="submit" value="envoyer">
+</form>
+```
+
+Nous avons mdofié/ajouté:
+- Le champ fname qui est obligatoire (required est indiqué).
+- Le champ name qui est obligatoire (required est indiqué).
+- Le champ hobby qui n'est pas obligatoire.
+
+## 4. L'attribut hidden
+Cet attribut que l'on peut utiliser sur n'importe quelle balise html permet de cacher le contenu de la balise. Ce qui signifie que visuellement vous ne voyez pas ce qu'il y a mais est présent dans le code HTML. Dans le cadre d'un formulaire cela peut être intéressant. Imaginons que le formulaire porte sur la modification d'un étudiant. Nous modifions un étudiant qui a un matricule. Peut-être que cette information n'est pas nécessaire à afficher car c'est une donnée en plus à afficher et parfois il est préférable de faire des interfaces simples/sobres sans trop de données. Dans ce cas, hidden est fort pratique.
+
+Modifions notre formulaire:
+
+<form action="http://uneadresse.com" method="get">
+    <input id="matricule" name="matricule" type="text" hidden >
+    Votre prénom:
+    <input id="fname" name="fname" type="text" required ><br/>
+    Votre nom:
+    <input id="name" name="name" type="text" required ><br/>
+    Votre hobby:
+    <input id="name" name="name" type="text"><br/>
+    <input type="submit" value="envoyer">
+</form>
+```
 
