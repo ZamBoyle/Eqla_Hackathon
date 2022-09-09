@@ -124,7 +124,7 @@ public class Demo {
         System.out.println("<h2>Fonctions diverses</h2>");
         System.out.println("<ul>");
         System.out.println("<li>help () = affiche l'aide.</li>");
-        System.out.println("<li>helloWorld () = affiche hello World !");
+        System.out.println("<li>helloworld () = affiche hello World !");
         System.out.println("<li>hi (p1) = Salue p1");
         System.out.println("</ul>");
     }
