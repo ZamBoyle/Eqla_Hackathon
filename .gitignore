@@ -1,2 +1,2 @@
-src/*.java
-env.json
+server/src/*.java
+server/env.json
