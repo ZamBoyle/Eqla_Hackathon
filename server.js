@@ -1,6 +1,7 @@
 var uuid = require("uuid");
 var params;
 const fs = require("fs");
+const env = require('./env.json');
 const https = require("https");
 const http = require("http");
 const host = "192.168.178.23";
