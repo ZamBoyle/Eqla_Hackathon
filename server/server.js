@@ -69,7 +69,7 @@ const requestListener = function (req, res) {
 
 function getJavaParams(params, myUuid) {
   var JavaParams = [
-    require("path").join("src", `${myUuid}.java`),
+    require("path").join("tmp", `${myUuid}.java`),
     params.get("function"),
   ];
   [...params.keys()].sort().forEach((element) => {
