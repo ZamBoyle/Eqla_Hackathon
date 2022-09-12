@@ -124,7 +124,7 @@ function cleanUrl(req) {
 }
 
 function deleteGithubFile(myUuid) {
-  var filename = `src/${myUuid}.java`;
+  var filename = `tmp/${myUuid}.java`;
   fs.unlinkSync(filename);
 }
 
@@ -140,7 +140,7 @@ function getGithubFile(repo, program) {
 }
 
 function writeGithubFile(fileContent, myUuid) {
-  var filename = `src/${myUuid}.java`;
+  var filename = `tmp/${myUuid}.java`;
   fs.writeFileSync(filename, fileContent);
 }
 
