@@ -3,6 +3,8 @@ Petit serveur web, sans prétention, fait en nodejs permettant d'exécuter du co
 
 ## Fichiers
 - ***server.js***: le server web en nodejs.
+- ***env.json***: vous devrez créer ce fichier pour que le serveur fonctionne.
+- ***env.sample.json***: fichier exemple pour créer le fichier env.json
 - ***errortemplate.html***: template html pour afficher une erreur.
 - ***template.html***: template html pour afficher le résultat.
 - ***demo1.html***: fichier de démo.
