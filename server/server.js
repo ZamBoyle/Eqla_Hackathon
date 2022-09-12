@@ -94,6 +94,7 @@ function runJAVAProgram(finalparams) {
   );
   if (childProcess.stdout.length > 0) {
     console.log("\tRésultat: \x1b[36mOK\x1b[0m");
+    console.log("out:"+childProcess.stdout.toString());
     return childProcess.stdout.toString();
   } else {
     throw childProcess.stderr.toString();
