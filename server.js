@@ -14,6 +14,7 @@ const requestListener = function (req, res) {
   if (req.method == "GET") {
     var url = cleanUrl(req);
     if (!url.includes("favicon.ico")) {
+      var ip = req.headers['x-forwarded-for'] ||     req.socket.remoteAddress ||     null;
       console.log(
         `Connexion depuis \x1b[33m ${req.connection.remoteAddress}\x1b[0m' sur l'url \x1b[36m${req.url}\x1b[0m `
       );      
