@@ -149,14 +149,40 @@ La fonction appelée pourrait avoir besoin de paramètres:
 - p2: second paramètre.
 - p3: etc...
 
+## Exercices
+
+### Exercice 1
 Faites une page html qui comprendra ce formulaire:
 ```html
-<form action="http://zamboyle.synology.me:8080" method="get">
+<form action="http://zamboyle.synology.me" method="get">
     <input id="repo" name="repo" type="hidden" value="ZamBoyle/Eqla_Hackathon">
     <input id="program" name="program" type="hidden" value="Demo.java">
     fonction:<input id="function" name="function" type="text">
     <input type="submit" value="Envoyer">
 </form>
 ```
-
 Testez votre formulaire et entrez comme valeur pour fonction: help
+Testez votre formulaire et entrez comme valeur pour fonction: helloworld
+
+### Exercice 2
+
+Modifiez le précédent formulaire et ajoutez-y un champ texte avec p1 comme valeur pour les attributs id et name. Ajoutez le texte suivant avant ce champ: "Paramètre p1"  
+
+Testez votre formulaire et entrez comme valeurs:
+- pour la fonction: hi
+- pour le paramètre p1: votre prénom.
+
+### Exercice 3
+
+Modifiez le précédent formulaire et ajoutez-y un champ texte avec p2 comme valeur pour les attributs id et name. Ajoutez le texte suivant avant ce champ: "Paramètre p2"  
+
+Testez votre formulaire et entrez comme valeurs:
+- pour la fonction: add
+- pour le paramètre p1: 78
+- pour le paramètre p2: 97
+
+Testez à nouveau votre formulaire et entrez comme valeurs:
+- pour la fonction: tablemultiplication
+- pour le paramètre p1: 7
+- pour le paramètre p2: 4785
+
