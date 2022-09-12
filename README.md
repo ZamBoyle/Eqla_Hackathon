@@ -16,7 +16,7 @@ Petit serveur web, sans prétention, fait en nodejs permettant d'exécuter du co
 - [template.html](server/template.html): template html pour afficher le résultat.
 
 ## Modules nodejs
-Vous devrez installer les modules suivants:
+Si vous désirez tester le serveur chez vous, vous devrez installer les modules js suivants:
 - uuid: pour générer des uuid.
 - sync-request: Effectue des requêtes Web synchrones pour récupérer le fichier sur GitHub.
 
