@@ -10,10 +10,6 @@ const mandatoryFields = ["program", "repo", "function"];
 const githubUrl = "https://raw.githubusercontent.com";
 
 const requestListener = function (req, res) {
-  const requestIp = require('request-ip');
-  const clientIp = requestIp.getClientIp(req); 
-  console.log(clientIp);
-
   if (req.method == "GET") {
     var url = cleanUrl(req);
     if (!url.includes("favicon.ico")) {
