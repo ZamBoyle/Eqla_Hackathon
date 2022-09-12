@@ -11,3 +11,12 @@ Petit serveur web, sans prétention, fait en nodejs permettant d'exécuter du co
 - ***demo2.html***: fichier de démo avec le résultat dans une iframe.
 - ***Demo.java***: exemple de programme JAVA fonctionnel avec le serveur.
 - ***formulaire***: légère introduction **rapide** aux formulaires.
+
+## Modules nodejs
+Vous devrez installer les modules suivants:
+- uuid: pour générer des uuid.
+- sync-request: Effectue des requêtes Web synchrones pour récupérer le fichier sur GitHub.
+
+```shell
+npm install uuid sync-request
+```
