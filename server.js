@@ -3,7 +3,7 @@ var params;
 const fs = require("fs");
 const https = require("https");
 const http = require("http");
-const host = "172.17.0.2";
+const host = "192.168.178.23";
 const path = require("path");
 const port = 8080;
 const mandatoryFields = ["program", "repo", "function"];
@@ -85,7 +85,7 @@ function getJavaParams(params, myUuid) {
 }
 
 function runJAVAProgram(finalparams) {
-  const childProcess = require("child_process").spawnSync("java", finalparams);
+  const childProcess = require("child_process").spawnSync("java", finalparams, {encoding:"utf8"});
   var paramsStr = "";
   finalparams.forEach((x) => (paramsStr += x + " "));
   console.log(
