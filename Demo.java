@@ -14,12 +14,15 @@ public class Demo {
     //
     // Pour connaître la taille du tableau  args on utilisera args.length
     //
-    // Supposons que notre tableau contienne les 3 String suivantes: "maison" "porte" "fenêtre".
+    // Si on exécute notre programme de cette manière: java Template.java add 12 45
+    //
+    // Notre tableau contiendra les 3 String suivantes: "add" "12" "45".
     // On accédera aux différentes String de notre tableau de cette manière à l'aide de crochets et d'un entier:
-    // args[0]   on accède à la chaîne stockée à l'indice 0 du tableau: "maison" Un tableau commence toujours à l'indice 0.
-    // args[1]   on accède à la chaîne stockée à l'indice 1 du tableau: "porte"
-    // args[2]   on accède à la chaîne stockée à l'indice 2 du tableau: "fenêtre"
+    // args[0]   on accède à la chaîne stockée à l'indice 0 du tableau: "add" Un tableau commence toujours à l'indice 0.
+    // args[1]   on accède à la chaîne stockée à l'indice 1 du tableau: "12"
+    // args[2]   on accède à la chaîne stockée à l'indice 2 du tableau: "45"
     // args[3]   on essaie d'accèder à la chaîne stockée à l'indice  du tableau: Cela va provoquer une erreur car notre tableau ne contient que 3 élèments.
+
 
     public static void main(String[] args) {
         // On vérifie qu'on le tableau a bien reçu des paramètres: c'est à dire est-ce
