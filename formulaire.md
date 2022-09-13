@@ -161,7 +161,7 @@ Faites une page html qui comprendra ce formulaire:
     <input type="submit" value="Envoyer">
 </form>
 ```
-Testez votre formulaire et entrez comme valeur pour fonction: help
+Testez votre formulaire et entrez comme valeur pour fonction: help  
 Testez votre formulaire et entrez comme valeur pour fonction: helloworld
 
 ### Exercice 2
