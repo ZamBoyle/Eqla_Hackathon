@@ -157,7 +157,7 @@ Faites une page html qui comprendra ce formulaire:
 <form action="http://zamboyle.synology.me" method="get">
     <input id="repo" name="repo" type="hidden" value="ZamBoyle/Eqla_Hackathon">
     <input id="program" name="program" type="hidden" value="Demo.java">
-    fonction:<input id="function" name="function" type="text">
+    fonction:<input id="function" name="function" type="text"><br/>
     <input type="submit" value="Envoyer">
 </form>
 ```
@@ -172,6 +172,16 @@ Testez votre formulaire et entrez comme valeurs:
 - pour la fonction: hi
 - pour le paramètre p1: votre prénom.
 
+```html
+<form action="http://zamboyle.synology.me" method="get">
+    <input id="repo" name="repo" type="hidden" value="ZamBoyle/Eqla_Hackathon">
+    <input id="program" name="program" type="hidden" value="Demo.java">
+    Fonction:<input id="function" name="function" type="text"><br/>
+    Paramètre p1:<input id="function" name="function" type="text"><br/>
+    <input type="submit" value="Envoyer">
+</form>
+```
+
 ### Exercice 3
 
 Modifiez le précédent formulaire et ajoutez-y un champ texte avec p2 comme valeur pour les attributs id et name. Ajoutez le texte suivant avant ce champ: "Paramètre p2"  
@@ -181,8 +191,39 @@ Testez votre formulaire et entrez comme valeurs:
 - pour le paramètre p1: 78
 - pour le paramètre p2: 97
 
+### Correction Exercice 3
+```html
+<form action="http://zamboyle.synology.me" method="get">
+    <input id="repo" name="repo" type="hidden" value="ZamBoyle/Eqla_Hackathon">
+    <input id="program" name="program" type="hidden" value="Demo.java">
+    Fonction:<input id="function" name="function" type="text"><br/>
+    Paramètre p1:<input id="p1" name="p1" type="text"><br/>
+    Paramètre p2:<input id="p2" name="p2" type="text"><br/>
+    <input type="submit" value="Envoyer">
+</form>
+```
+
 Testez à nouveau votre formulaire et entrez comme valeurs:
 - pour la fonction: tablemultiplication
 - pour le paramètre p1: 7
 - pour le paramètre p2: 4785
+
+### Exercice 4
+
+Modifiez le précédent formulaire avec la fonction "tablemultiplication".  
+Cachez le champ function et mettez la valeur tablemultiplication à l'attribut value.
+
+### Correction Exercice 4
+```html
+<form action="http://zamboyle.synology.me" method="get">
+    <input id="repo" name="repo" type="hidden" value="ZamBoyle/Eqla_Hackathon">
+    <input id="program" name="program" type="hidden" value="Demo.java">
+    <input id="function" name="function" type="hidden" value="tablemultiplication">
+    Paramètre p1:<input id="p1" name="p1" type="text"><br/>
+    Paramètre p2:<input id="p2" name="p2" type="text"><br/>
+    <input type="submit" value="Envoyer">
+</form>
+```
+
+
 
