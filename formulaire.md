@@ -136,7 +136,7 @@ En résumé:
 - id peut être utilisé au sein du document HTML.
 
 ### 6. Le type submit
-Ce type de champ de formulaire indique que c'est un bouton qui doit être créé. L'attribut value indique le texte à afficher sur le bouton.
+Ce type de champ de formulaire indique que c'est un bouton qui doit être créé. Mais pas n'importe quel bouton, c'est le bouton d'envoie du formulaire. L'attribut value indique le texte à afficher sur le bouton.
 
 ## 3. Exemple d'appel du serveur
 Pour pouvoir exécuter un code java, notre serveur va avoir besoin de champs obligatoires:
