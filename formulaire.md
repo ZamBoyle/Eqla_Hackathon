@@ -141,7 +141,7 @@ Ce type de champ de formulaire indique que c'est un bouton qui doit être créé
 ## 3. Exemple d'appel du serveur
 Pour pouvoir exécuter un code java, notre serveur va avoir besoin de champs obligatoires:
 - repo: il contiendra le nom de l'utilisateur et le nom du repo.
-- program: le nom du programme java à exécuter. Attention GitHub est sensible casse.
+- program: le nom du programme java à exécuter. Attention GitHub est sensible à la casse. Sensible à la casse, cela signifie que GitHub fait une différence entre une lettre majuscule et minuscule. Pour Github Demo.java n'est pas le même fichier que demo.java
 - function: le nom de la fonction à utiliser.
 
 La fonction appelée pourrait avoir besoin de paramètres:
