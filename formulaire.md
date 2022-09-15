@@ -172,6 +172,8 @@ Testez votre formulaire et entrez comme valeurs:
 - pour la fonction: hi
 - pour le paramètre p1: votre prénom.
 
+### Correction Exercice 2
+
 ```html
 <form action="http://zamboyle.synology.me" method="get">
     <input id="repo" name="repo" type="hidden" value="ZamBoyle/Eqla_Hackathon">
