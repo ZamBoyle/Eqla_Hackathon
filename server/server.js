@@ -100,7 +100,7 @@ function runJAVAProgram(finalparams) {
     if(childProcess.stderr.length > 0)
       throw childProcess.stderr.toString();
     else
-      throw `L'appel de la fonction <strong>'${params.get('function')}'</strong> n'a rien retourné comme texte ou comme erreur.`;
+      throw `L'appel de la fonction <strong>'${params.get('function')}'</strong> n'a rien retourné comme texte ou comme erreur. Le serveur considère alors que c'est une erreur.`;
 }
 
 function getErrorMessage(error) {
