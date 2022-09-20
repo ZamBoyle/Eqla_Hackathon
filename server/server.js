@@ -96,9 +96,11 @@ function runJAVAProgram(finalparams) {
     console.log("\tRésultat: \x1b[36mOK\x1b[0m");
     //console.log("out:"+childProcess.stdout.toString());
     return childProcess.stdout.toString();
-  } else {
-    throw childProcess.stderr.toString();
   }
+    if(childProcess.stderr.length > 0)
+      throw childProcess.stderr.toString();
+    else
+      throw `L'appel de la fonction <strong>'${params.get('function')}'</strong> n'a rien retourné comme texte ou comme erreur.`;
 }
 
 function getErrorMessage(error) {
