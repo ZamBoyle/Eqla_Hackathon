@@ -94,8 +94,8 @@ public class salaryFunction {
     }
 
     static String NiceText(String textCol1, String textCol2) {
-        String firstCol = AddColDiv(textCol1, "4");
-        String secondCol = AddColDiv(textCol2, "auto");
+        String firstCol = AddColDiv(textCol1, "col");
+        String secondCol = AddColDiv(textCol2, "col");
         return AddRowDiv(firstCol + secondCol);
     }
 
@@ -103,8 +103,8 @@ public class salaryFunction {
         return "<div class='row'>" + text + "</div>";
     }
 
-    static String AddColDiv(String text, String nbCol) {
-        return "<div class='col-" + nbCol + "''>" + text + "</div>";
+    static String AddColDiv(String text, String cssClass) {
+        return "<div class='" + cssClass + "''>" + text + "</div>";
     }
 
     // fonction qui calcul la taxe en pourcantage.
