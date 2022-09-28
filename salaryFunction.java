@@ -94,8 +94,8 @@ public class salaryFunction {
     }
 
     static String NiceText(String textCol1, String textCol2) {
-        String firstCol = AddColDiv(textCol1, 3);
-        String secondCol = AddColDiv(textCol2, 9);
+        String firstCol = AddColDiv(textCol1, "4");
+        String secondCol = AddColDiv(textCol2, "auto");
         return AddRowDiv(firstCol + secondCol);
     }
 
@@ -103,7 +103,7 @@ public class salaryFunction {
         return "<div class='row'>" + text + "</div>";
     }
 
-    static String AddColDiv(String text, Integer nbCol) {
+    static String AddColDiv(String text, String nbCol) {
         return "<div class='col-" + nbCol + "''>" + text + "</div>";
     }
 
