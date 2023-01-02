@@ -11,7 +11,7 @@ const path = require("path");
 const mandatoryFields = ["program", "repo", "function"];
 const githubUrl = "https://raw.githubusercontent.com";
 
-const requestListener = function (req, res) {
+const requestListener = async function (req, res) {
   if (req.method == "GET") {
     var url = cleanUrl(req);
     if (!url.includes("favicon.ico")) {
@@ -24,36 +24,42 @@ const requestListener = function (req, res) {
 
       res.setHeader("Content-Type", "text/html; charset=utf-8'");
       res.writeHead(200);
-
-      if (mandatoryFields.every((f) => params.has(f) && params.get(f))) {
-        try {
-          var repo = `${params.get("repo")}`;
-          var program = `${params.get("program")}`;
-          var myUuid = uuid.v4().replace(/-/g, "");
-          var javaParams = getJavaParams(params, myUuid);
-          var fileContent = getGithubFile(repo, program);
-
-          writeGithubFile(fileContent, myUuid);
-          body = runJAVAProgram(javaParams);
-          deleteGithubFile(myUuid);
-        } catch (error) {
-          body = getErrorMessage(error);
-        }
-      } else {
-        if (params) {
-          errorMessage = `Il manque les parametres obligatoires suivants:<ul>`;
-          mandatoryFields.forEach((x) => {
-            if (!params.has(x) || !params.get(x)) {
-              errorMessage += `<li> ${x} </li>`;
-            }
-          });
+      if(!params.has('debugdebug')){
+        if (mandatoryFields.every((f) => params.has(f) && params.get(f))) {
+          try {
+            var repo = `${params.get("repo")}`;
+            var program = `${params.get("program")}`;
+            var myUuid = uuid.v4().replace(/-/g, "");
+            var javaParams = getJavaParams(params, myUuid);
+            var fileContent = await getGithubFile(repo, program);
+  
+            writeGithubFile(fileContent, myUuid);
+            body = await runJAVAProgram(javaParams);
+            deleteGithubFile(myUuid);
+          } catch (error) {
+            body = getErrorMessage(error);
+          }
         } else {
-          errorMessage = `Il manque tous les paramètres obligatoires:<ul>`;
-          mandatoryFields.forEach((x) => (errorMessage += `<li> ${x} </li>`));
+          if (params) {
+            errorMessage = `Il manque les parametres obligatoires suivants:<ul>`;
+            mandatoryFields.forEach((x) => {
+              if (!params.has(x) || !params.get(x)) {
+                errorMessage += `<li> ${x} </li>`;
+              }
+            });
+          } else {
+            errorMessage = `Il manque tous les paramètres obligatoires:<ul>`;
+            mandatoryFields.forEach((x) => (errorMessage += `<li> ${x} </li>`));
+          }
+          errorMessage += "</ul>";
+          body = getErrorMessage(errorMessage);
         }
-        errorMessage += "</ul>";
-        body = getErrorMessage(errorMessage);
       }
+      else{
+        body = `<h1>Debug</h1><ul>`;
+        body += fs.readFileSync("log.html").toString();
+      }
+      
       var templateContent = fs.readFileSync("template.html").toString();
       templateContent = templateContent.replace("##BODY##", body);
       res.write(templateContent, "utf-8");
