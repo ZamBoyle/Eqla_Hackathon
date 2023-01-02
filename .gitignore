@@ -2,3 +2,4 @@ server/tmp/*.java
 server/env.json
 node_modules/
 .fake
+log.html

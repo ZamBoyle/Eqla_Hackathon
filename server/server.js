@@ -1,6 +1,7 @@
 var uuid = require("uuid");
 var params;
 const fs = require("fs");
+const ansiToHtml = require("ansi-to-html");
 const https = require("https");
 const http = require("http");
 const env = require('./env.json');
@@ -15,7 +16,7 @@ const requestListener = function (req, res) {
     var url = cleanUrl(req);
     if (!url.includes("favicon.ico")) {
       var ip = req.headers['x-forwarded-for'] ||     req.socket.remoteAddress ||     null;
-      console.log(
+      log(
         `Connexion depuis \x1b[33m ${req.connection.remoteAddress}\x1b[0m' sur l'url \x1b[36m${req.url}\x1b[0m `
       );      
       params = new URLSearchParams(url);
@@ -62,10 +63,23 @@ const requestListener = function (req, res) {
         // use post['blah'], etc.
       });
       res.end();
-      console.log("=========================================");
+      log("=========================================");
     }
   }
 };
+
+function log(message) {
+  console.log(message);
+  // Convertir les codes ANSI de couleur en balises HTML
+  message = new ansiToHtml().toHtml(message);
+
+  // Écrire le message dans un fichier HTML
+  fs.appendFile("log.html", message + "<br>", function (error) {
+    if (error) {
+      console.error(error);
+    }
+  });
+}
 
 function getJavaParams(params, myUuid) {
   var JavaParams = [
@@ -89,12 +103,12 @@ function runJAVAProgram(finalparams) {
   const childProcess = require("child_process").spawnSync("java", finalparams, {encoding:"utf8"});
   var paramsStr = "";
   finalparams.forEach((x) => (paramsStr += x + " "));
-  console.log(
+  log(
     `\tExécution du programme suivant: \x1b[92m java ${paramsStr}\x1b[0m (from \x1b[95mhttps://github.com/${params.get('repo')}/blob/master/${params.get('program')}\x1b[0m)`
   );
   if (childProcess.stdout.length > 0) {
-    console.log("\tRésultat: \x1b[36mOK\x1b[0m");
-    //console.log("out:"+childProcess.stdout.toString());
+    log("\tRésultat: \x1b[36mOK\x1b[0m");
+    //log("out:"+childProcess.stdout.toString());
     return childProcess.stdout.toString();
   }
     if(childProcess.stderr.length > 0)
@@ -112,7 +126,7 @@ function getErrorMessage(error) {
   errorTemplate = errorTemplate
     .replace("##ERROR##", error)
     .replace("##PARAMS##", debugParams);
-  console.log(`\tRésultat: \x1b[31mKO\x1b[0m: \x1b[91m${error}\x1b[0m`);
+  log(`\tRésultat: \x1b[31mKO\x1b[0m: \x1b[91m${error}\x1b[0m`);
   return errorTemplate;
 }
 
@@ -149,5 +163,5 @@ function writeGithubFile(fileContent, myUuid) {
 
 const server = http.createServer(requestListener);
 server.listen(port, host, () => {
-  console.log(`Server is running on http://${host}:${port}`);
+  log(`Server is running on http://${host}:${port}`);
 });
