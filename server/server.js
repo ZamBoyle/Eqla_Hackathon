@@ -56,7 +56,7 @@ const requestListener = async function (req, res) {
         }
       }
       else{
-        body = `<h1>Debug</h1><ul>`;
+        body = `<h1 class="text-center">Debug</h1><ul>`;
         body += fs.readFileSync("log.html").toString();
       }
       
@@ -77,7 +77,7 @@ const requestListener = async function (req, res) {
 function log(message) {
   console.log(message);
   // Convertir les codes ANSI de couleur en balises HTML
-  message = new ansiToHtml().toHtml(message);
+  message = new ansiToHtml().toHtml(message.replace("=========================================","<hr>"));
 
   // Écrire le message dans un fichier HTML
   fs.appendFile("log.html", message + "<br>", function (error) {
